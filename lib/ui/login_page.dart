@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import "package:flutter/material.dart";
-import 'package:proyecto_integrador_c6/ui/dashboard.dart';
+import 'package:proyecto_integrador_c6/ui/components/dashboard.dart';
 import 'package:http/http.dart' as http;
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 
@@ -98,27 +98,57 @@ class _LoginPageState extends State<LoginPage> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.white,
-                          backgroundColor: Color(0xFF003361),
+                          backgroundColor: const Color(0xFF003361),
                           shadowColor: Colors.green,
-                          elevation: 3,
+                          elevation: 5,
                           shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(50.0))),
                           minimumSize: const Size(400, 60)),
                       onPressed: () async {
                         var data;
+                        var response;
                         data = {
                           "username": _controllerUsername.text,
                           "password": _controllerPassword.text
                         };
 
-                        var url = Uri.parse(
-                            "http://192.168.1.104:3000/apiv1/auth/login");
-                        var response = await http.post(url,
-                            headers: {
-                              HttpHeaders.contentTypeHeader: "application/json",
-                            },
-                            body: jsonEncode(data));
+                        try {
+                          var url = Uri.parse(
+                              "http://192.168.1.104:3000/apiv1/auth/login");
+
+                          response = await http.post(url,
+                              headers: {
+                                HttpHeaders.contentTypeHeader:
+                                    "application/json",
+                              },
+                              body: jsonEncode(data));
+                          print(response.statusCode);
+                        } catch (e) {
+                          return showModalBottomSheet<void>(
+                              context: context,
+                              builder: (context) {
+                                return Container(
+                                    height: 50,
+                                    color: Colors.red,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: const [
+                                          Text(
+                                            "No hay conexión",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                    ));
+                              });
+                        }
 
                         var respuesta = jsonDecode(response.body);
                         var message = respuesta["message"];
@@ -185,7 +215,7 @@ class _LoginPageState extends State<LoginPage> {
                                         children: [
                                           Text(
                                             "${message}",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
