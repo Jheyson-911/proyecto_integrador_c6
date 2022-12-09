@@ -1,7 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 
 import "package:flutter/material.dart";
 import 'package:proyecto_integrador_c6/ui/dashboard.dart';
+import 'package:http/http.dart' as http;
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,13 +16,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
-  late TextEditingController _controllerEmail;
+  late TextEditingController _controllerUsername;
   late TextEditingController _controllerPassword;
 
   @override
   void initState() {
-    _controllerEmail = TextEditingController(text: "");
-    _controllerPassword = TextEditingController(text: "");
+    _controllerUsername = TextEditingController(text: "jheyson123");
+    _controllerPassword = TextEditingController(text: "admin123");
     super.initState();
   }
 
@@ -57,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: _controllerEmail,
+                      controller: _controllerUsername,
                       decoration: const InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFf5f5f5),
@@ -69,13 +72,13 @@ class _LoginPageState extends State<LoginPage> {
                                   width: 2.0, color: Color(0xFF003361)),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0))),
-                          label: Text("Email")),
+                          label: Text("Username")),
                     ),
                     const SizedBox(
                       height: 20.0,
                     ),
                     TextFormField(
-                      controller: _controllerEmail,
+                      controller: _controllerPassword,
                       decoration: const InputDecoration(
                           filled: true,
                           fillColor: Color(0xFFf5f5f5),
@@ -102,12 +105,96 @@ class _LoginPageState extends State<LoginPage> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(50.0))),
                           minimumSize: const Size(400, 60)),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Dashboard()));
-                        print("Estas intentando ingresar ");
+                      onPressed: () async {
+                        var data;
+                        data = {
+                          "username": _controllerUsername.text,
+                          "password": _controllerPassword.text
+                        };
+
+                        var url = Uri.parse(
+                            "http://192.168.1.104:3000/apiv1/auth/login");
+                        var response = await http.post(url,
+                            headers: {
+                              HttpHeaders.contentTypeHeader: "application/json",
+                            },
+                            body: jsonEncode(data));
+
+                        var respuesta = jsonDecode(response.body);
+                        var message = respuesta["message"];
+                        var token = respuesta["data"];
+                        print(respuesta);
+                        print(message);
+                        print(token);
+                        if (token == null) {
+                          return showModalBottomSheet<void>(
+                              context: context,
+                              builder: (context) {
+                                return Container(
+                                    height: 50,
+                                    color: Colors.red,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            "$message",
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                    ));
+                              });
+                        }
+                        var jwtverify = JWT.verify(token, SecretKey("123"));
+                        //print(jwtverify.payload);
+                        var nombre = message;
+                        print(jwtverify.payload["nombres"]);
+                        print(jwtverify.payload["ap_paterno"]);
+                        print(jwtverify.payload["ap_materno"]);
+                        print(jwtverify.payload["codigo"]);
+
+                        var nombres = jwtverify.payload["nombres"];
+                        var ap_paterno = jwtverify.payload["ap_paterno"];
+                        var ap_materno = jwtverify.payload["ap_materno"];
+                        var codigo = jwtverify.payload["codigo"];
+                        if (message.split(" ")[1] ==
+                            jwtverify.payload["usuario"]) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Dashboard(nombres,
+                                      ap_paterno, ap_materno, codigo)));
+
+                          return showModalBottomSheet<void>(
+                              context: context,
+                              builder: (context) {
+                                return Container(
+                                    height: 50,
+                                    color: Colors.green,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            "${message}",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                    ));
+                              });
+                        }
                       },
                       child: const Text("Login"),
                     ),

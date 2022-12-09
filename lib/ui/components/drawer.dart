@@ -1,7 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:proyecto_integrador_c6/ui/login_page.dart';
 
-Widget DrawerMenu(String titulo, BuildContext context) {
+Widget DrawerMenu(String titulo, String nombre, String ap_paterno,
+    String ap_materno, String codigo, BuildContext context) {
   return Scaffold(
     appBar: AppBar(title: Text(titulo)),
     body: const Center(
@@ -21,25 +22,27 @@ Widget DrawerMenu(String titulo, BuildContext context) {
                 backgroundImage: AssetImage("assets/perfil.jpg"),
                 child: Padding(padding: EdgeInsets.all(8)),
               )),
-          const Center(
-            child: Text(
-              "Jason Willy",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontFamily: "arial",
-                  fontWeight: FontWeight.bold),
+          Center(
+            child: Center(
+              child: Text(
+                "${nombre} ${ap_paterno} ${ap_materno}",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 21,
+                    fontFamily: "arial",
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ),
           const SizedBox(
             height: 5,
           ),
-          const Center(
+          Center(
             child: Text(
-              "202012378",
+              "${codigo}",
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 25,
+                  fontSize: 17,
                   fontFamily: "arial",
                   fontWeight: FontWeight.w100),
             ),
