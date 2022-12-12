@@ -1,17 +1,22 @@
+import 'dart:convert';
+
 import "package:flutter/material.dart";
-import 'package:proyecto_integrador_c6/ui/components/convocatorias.dart';
-import 'package:proyecto_integrador_c6/ui/components/dashboard.dart';
-import 'package:proyecto_integrador_c6/ui/components/empresas.dart';
-import 'package:proyecto_integrador_c6/ui/components/informacion.dart';
-import 'package:proyecto_integrador_c6/ui/convocatorias_page.dart';
-import 'package:proyecto_integrador_c6/ui/dashboard_page.dart';
-import 'package:proyecto_integrador_c6/ui/empresas_page.dart';
-import 'package:proyecto_integrador_c6/ui/informacion_page.dart';
+import 'package:proyecto_integrador_c6/services/solicitudes/solicitud.dart';
+import 'package:proyecto_integrador_c6/ui/drawerView/convocatorias.dart';
+import 'package:proyecto_integrador_c6/ui/drawerView/dashboard.dart';
+import 'package:proyecto_integrador_c6/ui/drawerView/empresas.dart';
+import 'package:proyecto_integrador_c6/ui/drawerView/informacion.dart';
+import 'package:proyecto_integrador_c6/ui/components/convocatorias/convocatorias_page.dart';
+import 'package:proyecto_integrador_c6/ui/components/dashboard/dashboard_page.dart';
+import 'package:proyecto_integrador_c6/ui/components/empresas/empresas_page.dart';
+import 'package:proyecto_integrador_c6/ui/components/informacion/informacion_page.dart';
 import 'package:proyecto_integrador_c6/ui/login_page.dart';
-import 'package:proyecto_integrador_c6/ui/components/practicas.dart';
-import 'package:proyecto_integrador_c6/ui/components/solicitudes.dart';
-import 'package:proyecto_integrador_c6/ui/practicas_page.dart';
-import 'package:proyecto_integrador_c6/ui/solicitudes_page.dart';
+import 'package:proyecto_integrador_c6/ui/drawerView/practicas.dart';
+import 'package:proyecto_integrador_c6/ui/drawerView/solicitudes.dart';
+import 'package:proyecto_integrador_c6/ui/components/practicas/practicas_page.dart';
+import 'package:proyecto_integrador_c6/ui/components/solicitudes/solicitudes_page.dart';
+
+import 'package:http/http.dart' as http;
 
 Widget DrawerMenu(String titulo, String nombre, String ap_paterno,
     String ap_materno, String codigo, BuildContext context) {

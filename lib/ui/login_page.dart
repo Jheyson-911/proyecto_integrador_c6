@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import "package:flutter/material.dart";
-import 'package:proyecto_integrador_c6/ui/components/dashboard.dart';
+import 'package:proyecto_integrador_c6/ui/drawerView/dashboard.dart';
 import 'package:http/http.dart' as http;
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 
@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         try {
                           var url = Uri.parse(
-                              "http://192.168.1.104:3000/apiv1/auth/login");
+                              "http://10.80.100.98:3000/apiv1/auth/login");
 
                           response = await http.post(url,
                               headers: {

@@ -1,21 +1,21 @@
 import "package:flutter/material.dart";
-import 'package:proyecto_integrador_c6/ui/components/drawer.dart';
+import 'package:proyecto_integrador_c6/ui/drawerView/drawer.dart';
 
-class Solicitudes extends StatefulWidget {
+class Convocatorias extends StatefulWidget {
   final String nombre_usuario;
   final String ap_paterno;
   final String ap_materno;
   final String codigo;
-  const Solicitudes(
+  const Convocatorias(
       this.nombre_usuario, this.ap_paterno, this.ap_materno, this.codigo,
       {super.key});
 
   @override
-  State<Solicitudes> createState() => _SolicitudesState();
+  State<Convocatorias> createState() => _ConvocatoriasState();
 }
 
-class _SolicitudesState extends State<Solicitudes> {
-  String titulo = "Solicitudes";
+class _ConvocatoriasState extends State<Convocatorias> {
+  String titulo = "Convocatorias";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
