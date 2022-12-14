@@ -15,14 +15,11 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: HoraTotalDBService.getHoras("1"),
+        future: HoraTotalDBService.getHoras("2"),
         builder: (context, snapshot) {
-          print(snapshot);
           if (snapshot.hasData) {
-            print(snapshot.data);
             var valor = int.parse(snapshot.data!);
             var porcentaje = (valor * 0.1) / 70;
-            print(porcentaje);
             return Center(
                 child: ListView(children: <Widget>[
               const SizedBox(
