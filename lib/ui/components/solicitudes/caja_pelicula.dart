@@ -9,7 +9,9 @@ class CajaSolicitud extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(soli.nombreEmpresa),
+      leading: Icon(Icons.train),
       subtitle: Text(soli.actividad),
+      trailing: Icon(Icons.save),
     );
   }
 }

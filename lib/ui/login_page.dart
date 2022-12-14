@@ -21,8 +21,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    _controllerUsername = TextEditingController(text: "jheyson123");
-    _controllerPassword = TextEditingController(text: "admin123");
+    _controllerUsername = TextEditingController(text: "fanny1");
+    _controllerPassword = TextEditingController(text: "123456");
     super.initState();
   }
 
@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         try {
                           var url = Uri.parse(
-                              "http://10.80.100.98:3000/apiv1/auth/login");
+                              "http://192.168.1.9:3000/apiv1/auth/login");
 
                           response = await http.post(url,
                               headers: {

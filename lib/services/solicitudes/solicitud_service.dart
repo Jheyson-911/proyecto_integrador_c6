@@ -5,7 +5,7 @@ import 'package:proyecto_integrador_c6/services/solicitudes/solicitudes.dart';
 import 'package:http/http.dart' as http;
 
 class SolicitudDBService {
-  static final String API_URL = "http://10.80.100.98:3000";
+  static final String API_URL = "http://192.168.1.9:3000";
 
   static Future<List<Solicitud>> getSolicitudes() async {
     var url = API_URL + "/apiv1/solicitud/all";
