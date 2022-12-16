@@ -26,7 +26,6 @@ class SolicitudesDBPage extends StatelessWidget {
       body: FutureBuilder(
         future: SolicitudDBService.getSolicitudes(),
         builder: (context, snapshot) {
-          print(snapshot);
           if (snapshot.hasData) {
             return ListView.builder(
               itemCount: snapshot.data!.length,

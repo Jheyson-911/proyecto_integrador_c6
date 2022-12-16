@@ -15,6 +15,7 @@ class SolicitudDBService {
 
     if (respuesta.statusCode == 200) {
       final respuestaJSON = jsonDecode(respuesta.body);
+      print(respuestaJSON["data"]);
       final listaPeliculas = Solicitudes.fromJsonList(respuestaJSON["data"]);
       return listaPeliculas;
     }

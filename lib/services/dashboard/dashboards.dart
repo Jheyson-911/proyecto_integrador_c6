@@ -11,3 +11,17 @@ class HorasTotales {
     return listaHoras;
   }
 }
+
+class EnProcesos {
+  EnProcesos();
+  static List<EnProceso> fromJsonList(List<dynamic> jsonList) {
+    List<EnProceso> listaProcesos = [];
+    if (jsonList != null) {
+      for (var proceso in jsonList) {
+        final data = EnProceso.fromJson(proceso);
+        listaProcesos.add(data);
+      }
+    }
+    return listaProcesos;
+  }
+}
