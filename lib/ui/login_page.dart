@@ -111,7 +111,6 @@ class _LoginPageState extends State<LoginPage> {
                                     "application/json",
                               },
                               body: jsonEncode(data));
-                          print(response.statusCode);
                         } catch (e) {
                           return showModalBottomSheet<void>(
                               context: context,
@@ -141,9 +140,6 @@ class _LoginPageState extends State<LoginPage> {
                         var respuesta = jsonDecode(response.body);
                         var message = respuesta["message"];
                         var token = respuesta["data"];
-                        print(respuesta);
-                        print(message);
-                        print(token);
                         if (token == null) {
                           return showModalBottomSheet<void>(
                               context: context,
@@ -170,12 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                               });
                         }
                         var jwtverify = JWT.verify(token, SecretKey("123"));
-                        //print(jwtverify.payload);
                         var nombre = message;
-                        print(jwtverify.payload["nombres"]);
-                        print(jwtverify.payload["ap_paterno"]);
-                        print(jwtverify.payload["ap_materno"]);
-                        print(jwtverify.payload["codigo"]);
 
                         var nombres = jwtverify.payload["nombres"];
                         var ap_paterno = jwtverify.payload["ap_paterno"];
