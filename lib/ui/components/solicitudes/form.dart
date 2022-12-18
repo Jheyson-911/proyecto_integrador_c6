@@ -6,6 +6,7 @@ import 'package:proyecto_integrador_c6/services/solicitudes/solicitud_service.da
 import 'package:proyecto_integrador_c6/ui/components/solicitudes/solicitudes_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
+import 'package:quickalert/quickalert.dart';
 
 class FormSoli extends StatefulWidget {
   const FormSoli({super.key});
@@ -43,7 +44,7 @@ class _SolicitudesPageState extends State<FormSoli> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Center(
+          title: const Center(
         child: Text(
           'Crear Solicitud',
         ),
@@ -57,7 +58,7 @@ class _SolicitudesPageState extends State<FormSoli> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       'DATOS DE LA EMPRESA',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -157,7 +158,7 @@ class _SolicitudesPageState extends State<FormSoli> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    Text(
+                    const Text(
                       'DATOS DEL REPRESENTANTE',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -257,9 +258,6 @@ class _SolicitudesPageState extends State<FormSoli> {
                           style: ElevatedButton.styleFrom(
                               primary: Color.fromARGB(255, 11, 168, 90)),
                           onPressed: () async {
-                            Navigator.pop(
-                              context,
-                            );
                             var data;
                             var response;
                             data = {
@@ -273,7 +271,23 @@ class _SolicitudesPageState extends State<FormSoli> {
                               "area": _controllerAreaEncargada.text,
                               "descripcion": _controllerDescripcion.text
                             };
-                            SolicitudDBService.createSolicitud("2", data);
+                            var respuesta =
+                                await SolicitudDBService.createSolicitud(
+                                    "2", data);
+
+                            Navigator.pop(
+                              context,
+                            );
+                            if (respuesta == 1) {
+                              var message =
+                                  "Solicitud actualizada correctamente";
+
+                              _succesModal(message);
+                            } else {
+                              var message =
+                                  "Ocurrio un error al actualizar la solicitud";
+                              _errorModal(context, message);
+                            }
                           },
                           child: const Icon(Icons.save),
                         ),
@@ -289,6 +303,22 @@ class _SolicitudesPageState extends State<FormSoli> {
           ),
         ),
       ),
+    );
+  }
+
+  _succesModal(String message) {
+    return QuickAlert.show(
+      title: message,
+      context: context,
+      type: QuickAlertType.success,
+    );
+  }
+
+  _errorModal(BuildContext context, String message) {
+    return QuickAlert.show(
+      context: context,
+      type: QuickAlertType.error,
+      title: message,
     );
   }
 }

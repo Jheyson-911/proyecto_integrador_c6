@@ -23,7 +23,7 @@ class SolicitudDBService {
     return <Solicitud>[];
   }
 
-  static Future<List<Solicitud>> createSolicitud(
+  static Future<int> createSolicitud(
       String id, Map<String, dynamic> data) async {
     var url = API_URL + "/apiv1/solicitud/" + id;
     final respuesta = await http.post(Uri.parse(url),
@@ -33,10 +33,10 @@ class SolicitudDBService {
         body: jsonEncode(data));
     if (respuesta.statusCode == 200) {
       final respuestaJSON = jsonDecode(respuesta.body);
-      final listaPeliculas = Solicitudes.fromJsonList(respuestaJSON["data"]);
-      return listaPeliculas;
+      // final listaPeliculas = Solicitudes.fromJsonList(respuestaJSON["data"]);
+      return 1;
     }
-    return <Solicitud>[];
+    return 0;
   }
 
   static Future<int> updateSolicitud(

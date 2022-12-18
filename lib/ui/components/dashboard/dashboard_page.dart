@@ -76,7 +76,6 @@ class _DashboardPageState extends State<DashboardPage> {
                 var proceso = int.parse(snapshot.data![0].proceso);
                 var total = int.parse(snapshot.data![0].total);
                 var porcentaje = (proceso * 0.1) / (total / 10);
-                print(porcentaje);
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

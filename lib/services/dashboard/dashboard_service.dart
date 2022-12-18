@@ -21,12 +21,9 @@ class HoraTotalDBService {
 
   static Future<List<EnProceso>> getEstudiantesProceso() async {
     var url = API_URL + "/apiv1/reportes/proceso";
-    print(url);
     final respuesta = await http.get(Uri.parse(url));
     if (respuesta.statusCode == 200) {
       final respuestaJSON = jsonDecode(respuesta.body);
-      print(respuestaJSON["data"]);
-      // print(respuestaJSON["data"]);
       final listaprocesos = EnProcesos.fromJsonList(respuestaJSON["data"]);
       return listaprocesos;
     }
