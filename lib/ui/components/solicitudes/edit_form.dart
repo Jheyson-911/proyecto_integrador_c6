@@ -2,18 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 
 import "package:flutter/material.dart";
+import 'package:proyecto_integrador_c6/services/solicitudes/solicitud.dart';
 import 'package:proyecto_integrador_c6/services/solicitudes/solicitud_service.dart';
-import 'package:proyecto_integrador_c6/ui/components/solicitudes/solicitudes_page.dart';
-import 'package:http/http.dart' as http;
-import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
+import 'package:quickalert/quickalert.dart';
 
-class FormSoli extends StatefulWidget {
-  const FormSoli({super.key});
+class EditFormSoli extends StatefulWidget {
+  final Solicitud soli;
+  const EditFormSoli(this.soli, {super.key});
   @override
-  State<FormSoli> createState() => _SolicitudesPageState();
+  State<EditFormSoli> createState() => _EditFormSoli();
 }
 
-class _SolicitudesPageState extends State<FormSoli> {
+class _EditFormSoli extends State<EditFormSoli> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _controllerName;
   late TextEditingController _controllerRuc;
@@ -27,15 +27,16 @@ class _SolicitudesPageState extends State<FormSoli> {
 
   @override
   void initState() {
-    _controllerName = TextEditingController(text: "");
-    _controllerRuc = TextEditingController(text: "");
-    _controllerActividad = TextEditingController(text: "");
-    _controllerSector = TextEditingController(text: "");
-    _controllerDireccion = TextEditingController(text: "");
-    _controllerNombre = TextEditingController(text: "");
-    _controllerCargo = TextEditingController(text: "");
-    _controllerAreaEncargada = TextEditingController(text: "");
-    _controllerDescripcion = TextEditingController(text: "");
+    _controllerName = TextEditingController(text: widget.soli.nombreEmpresa);
+    _controllerRuc = TextEditingController(text: widget.soli.ruc);
+    _controllerActividad = TextEditingController(text: widget.soli.actividad);
+    _controllerSector = TextEditingController(text: widget.soli.sector);
+    _controllerDireccion = TextEditingController(text: widget.soli.direccion);
+    _controllerNombre = TextEditingController(text: widget.soli.representante);
+    _controllerCargo = TextEditingController(text: widget.soli.cargo);
+    _controllerAreaEncargada = TextEditingController(text: widget.soli.area);
+    _controllerDescripcion =
+        TextEditingController(text: widget.soli.descripcion);
     super.initState();
   }
 
@@ -45,7 +46,7 @@ class _SolicitudesPageState extends State<FormSoli> {
       appBar: AppBar(
           title: Center(
         child: Text(
-          'Crear Solicitud',
+          'Editar Solicitud',
         ),
       )),
       body: Container(
@@ -257,9 +258,6 @@ class _SolicitudesPageState extends State<FormSoli> {
                           style: ElevatedButton.styleFrom(
                               primary: Color.fromARGB(255, 11, 168, 90)),
                           onPressed: () async {
-                            Navigator.pop(
-                              context,
-                            );
                             var data;
                             var response;
                             data = {
@@ -271,9 +269,25 @@ class _SolicitudesPageState extends State<FormSoli> {
                               "representante": _controllerNombre.text,
                               "cargo": _controllerCargo.text,
                               "area": _controllerAreaEncargada.text,
+                              "estado": "ACEPTADA",
                               "descripcion": _controllerDescripcion.text
                             };
-                            SolicitudDBService.createSolicitud("2", data);
+                            var respuesta =
+                                await SolicitudDBService.updateSolicitud(
+                                    widget.soli.id.toString(), data);
+                            Navigator.pop(
+                              context,
+                            );
+                            if (respuesta == 1) {
+                              var message =
+                                  "Solicitud actualizada correctamente";
+
+                              _succesModal(message);
+                            } else {
+                              var message =
+                                  "Ocurrio un error al actualizar la solicitud";
+                              _errorModal(context, message);
+                            }
                           },
                           child: const Icon(Icons.save),
                         ),
@@ -289,6 +303,22 @@ class _SolicitudesPageState extends State<FormSoli> {
           ),
         ),
       ),
+    );
+  }
+
+  _succesModal(String message) {
+    return QuickAlert.show(
+      title: message,
+      context: context,
+      type: QuickAlertType.success,
+    );
+  }
+
+  _errorModal(BuildContext context, String message) {
+    return QuickAlert.show(
+      context: context,
+      type: QuickAlertType.error,
+      title: message,
     );
   }
 }

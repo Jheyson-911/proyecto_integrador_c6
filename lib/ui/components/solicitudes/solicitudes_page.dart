@@ -16,6 +16,11 @@ class _SolicitudesPageState extends State<SolicitudesPage> {
   Widget build(BuildContext context) {
     return SolicitudesDBPage();
   }
+
+  @override
+  void initState() {
+    super.initState();
+  }
 }
 
 class SolicitudesDBPage extends StatelessWidget {
@@ -26,6 +31,7 @@ class SolicitudesDBPage extends StatelessWidget {
       body: FutureBuilder(
         future: SolicitudDBService.getSolicitudes(),
         builder: (context, snapshot) {
+          print(snapshot);
           if (snapshot.hasData) {
             return ListView.builder(
               itemCount: snapshot.data!.length,
