@@ -17,4 +17,8 @@ class EmpresaController {
   Future<String> createPostEmpresa(EmpresaModel empresaModel) async {
     return _empresaService.postEmpresa(empresaModel);
   }
+  
+  Future<EmpresaModel> fetchEmpresa(EmpresaModel empresaModel) async {
+    return _empresaService.getEmpresa(empresaModel);
+  }
 }
