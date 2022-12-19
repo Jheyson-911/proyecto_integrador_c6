@@ -9,7 +9,8 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:quickalert/quickalert.dart';
 
 class FormSoli extends StatefulWidget {
-  const FormSoli({super.key});
+  final Function accion;
+  const FormSoli(this.accion, {super.key});
   @override
   State<FormSoli> createState() => _SolicitudesPageState();
 }
@@ -282,7 +283,7 @@ class _SolicitudesPageState extends State<FormSoli> {
                               var message =
                                   "Solicitud actualizada correctamente";
 
-                              _succesModal(message);
+                              _succesModal(message, widget.accion);
                             } else {
                               var message =
                                   "Ocurrio un error al actualizar la solicitud";
@@ -306,7 +307,8 @@ class _SolicitudesPageState extends State<FormSoli> {
     );
   }
 
-  _succesModal(String message) {
+  _succesModal(String message, Function accion) {
+    accion();
     return QuickAlert.show(
       title: message,
       context: context,
