@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
@@ -21,6 +20,3 @@ class PracticaDBService {
     return <Practica>[];
   }
 }
-=======
-// TODO Implement this library.
->>>>>>> bdabc94678646137f39d705ffb871777eae85f6b
