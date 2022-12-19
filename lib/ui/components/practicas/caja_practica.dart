@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "package:flutter/material.dart";
 import 'package:proyecto_integrador_c6/services/practicas/practica.dart';
 
@@ -74,3 +75,6 @@ class CajaPractica extends StatelessWidget {
     );
   }
 }
+=======
+// TODO Implement this library.
+>>>>>>> bdabc94678646137f39d705ffb871777eae85f6b

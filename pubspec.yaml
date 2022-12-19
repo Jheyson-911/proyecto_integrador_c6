@@ -43,6 +43,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   quickalert: ^1.0.1
   intl: ^0.18.0
+  flutter_typeahead: ^1.8.8
 
 dev_dependencies:
   flutter_test:
