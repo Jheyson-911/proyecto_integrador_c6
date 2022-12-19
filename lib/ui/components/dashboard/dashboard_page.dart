@@ -101,6 +101,94 @@ class _DashboardPageState extends State<DashboardPage> {
               }
             },
           ),
+          const SizedBox(
+            height: 15,
+          ),
+          const Center(
+            child: Text(
+              "Estudiantes que finalizaron el proceso de PPP",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          FutureBuilder(
+            future: HoraTotalDBService.getEstudiantesFinalizado(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                var proceso = int.parse(snapshot.data![0].finalizado);
+                var total = int.parse(snapshot.data![0].total);
+                var porcentaje = (proceso * 0.1) / (total / 10);
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LinearPercentIndicator(
+                      alignment: MainAxisAlignment.center,
+                      width: MediaQuery.of(context).size.width - 50,
+                      animation: true,
+                      lineHeight: 20.0,
+                      animationDuration: 2500,
+                      percent: porcentaje,
+                      center: Text(
+                        "${(porcentaje * 100).toStringAsFixed(2)}%",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 17.0),
+                      ),
+                      barRadius: Radius.circular(16),
+                      progressColor: Colors.yellow,
+                    ),
+                  ],
+                );
+              } else {
+                return SpinnerWidget();
+              }
+            },
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          const Center(
+            child: Text(
+              "Estudiantes que aun no inician el proceso de PPP",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          FutureBuilder(
+            future: HoraTotalDBService.getEstudiantesNoInicio(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                var proceso = int.parse(snapshot.data![0].inicio);
+                var total = int.parse(snapshot.data![0].total);
+                var porcentaje = (proceso * 0.1) / (total / 10);
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LinearPercentIndicator(
+                      alignment: MainAxisAlignment.center,
+                      width: MediaQuery.of(context).size.width - 50,
+                      animation: true,
+                      lineHeight: 20.0,
+                      animationDuration: 2500,
+                      percent: porcentaje,
+                      center: Text(
+                        "${(porcentaje * 100).toStringAsFixed(2)}%",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 17.0),
+                      ),
+                      barRadius: Radius.circular(16),
+                      progressColor: Colors.red,
+                    ),
+                  ],
+                );
+              } else {
+                return SpinnerWidget();
+              }
+            },
+          ),
         ],
       ),
     ));
