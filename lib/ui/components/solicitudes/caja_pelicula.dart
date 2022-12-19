@@ -111,14 +111,6 @@ class CajaSolicitud extends StatelessWidget {
         ));
   }
 
-  _warninModal(BuildContext context) {
-    return QuickAlert.show(
-      context: context,
-      type: QuickAlertType.info,
-      text: 'Buy two, get one free',
-    );
-  }
-
   _succesModal(BuildContext context, String message) {
     return QuickAlert.show(
         title: message,

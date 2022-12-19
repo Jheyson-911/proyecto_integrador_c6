@@ -29,4 +29,28 @@ class HoraTotalDBService {
     }
     return <EnProceso>[];
   }
+
+  static Future<List<Finalizado>> getEstudiantesFinalizado() async {
+    var url = API_URL + "/apiv1/reportes/finalizado";
+    final respuesta = await http.get(Uri.parse(url));
+    print(url);
+    if (respuesta.statusCode == 200) {
+      final respuestaJSON = jsonDecode(respuesta.body);
+      final listaprocesos = Finalizados.fromJsonList(respuestaJSON["data"]);
+      return listaprocesos;
+    }
+    return <Finalizado>[];
+  }
+
+  static Future<List<NoInicio>> getEstudiantesNoInicio() async {
+    var url = API_URL + "/apiv1/reportes/noinicio";
+    final respuesta = await http.get(Uri.parse(url));
+    print(url);
+    if (respuesta.statusCode == 200) {
+      final respuestaJSON = jsonDecode(respuesta.body);
+      final listaprocesos = NoInicios.fromJsonList(respuestaJSON["data"]);
+      return listaprocesos;
+    }
+    return <NoInicio>[];
+  }
 }

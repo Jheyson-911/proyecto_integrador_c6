@@ -25,3 +25,31 @@ class EnProcesos {
     return listaProcesos;
   }
 }
+
+class Finalizados {
+  Finalizados();
+  static List<Finalizado> fromJsonList(List<dynamic> jsonList) {
+    List<Finalizado> listaProcesos = [];
+    if (jsonList != null) {
+      for (var proceso in jsonList) {
+        final data = Finalizado.fromJson(proceso);
+        listaProcesos.add(data);
+      }
+    }
+    return listaProcesos;
+  }
+}
+
+class NoInicios {
+  NoInicios();
+  static List<NoInicio> fromJsonList(List<dynamic> jsonList) {
+    List<NoInicio> listaProcesos = [];
+    if (jsonList != null) {
+      for (var proceso in jsonList) {
+        final data = NoInicio.fromJson(proceso);
+        listaProcesos.add(data);
+      }
+    }
+    return listaProcesos;
+  }
+}
