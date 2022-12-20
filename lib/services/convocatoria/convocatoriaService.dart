@@ -35,28 +35,18 @@ class ConvocatoriaServiceMx implements ConvocatoriaService {
   @override
   Future<String> putConvocatoria(ConvocatoriaModel convocatoriaModel) async {
     String resData = '';
-    var url = Uri.parse('$API_URL/apiv1/empresa/${convocatoriaModel.id}');
-    var data = {
-      "descripcion": convocatoriaModel.descripcion,
-      "cupos": convocatoriaModel.cupos,
-      "cargo": convocatoriaModel.cargo,
-      "tiempo": convocatoriaModel.tiempo,
-      "lugar": convocatoriaModel.lugar,
-      "fechaLimite": convocatoriaModel.fechaLimite,
-      "telefono": convocatoriaModel.telefono,
-      "fkEmpresaId": convocatoriaModel.fkEmpresaId
-    };
-    // print(jsonEncode(data));
+    var url = Uri.parse('$API_URL/apiv1/convocatorias/${convocatoriaModel.id}');
 
     await http.put(
       url, 
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(data)
+      body: jsonEncode(convocatoriaModel.toJson())
       // headers: {'Authorization': 'your token'},
     ).then((response){
       Map<String, dynamic> result = json.decode(response.body);
+      print(result['message']);
       return resData = result['message'];
     });
     return resData;
@@ -76,7 +66,7 @@ class ConvocatoriaServiceMx implements ConvocatoriaService {
   
   @override
   Future<String> postConvocatoria(ConvocatoriaModel convocatoriaModel) async {
-    var url = Uri.parse('$API_URL/apiv1/convocatoria/create');
+    var url = Uri.parse('$API_URL/apiv1/convocatorias/create');
     var result = '';
     var response = await http.post(
       url,

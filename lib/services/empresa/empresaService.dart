@@ -7,6 +7,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 abstract class EmpresaService {
   Future<List<EmpresaModel>> getEmpresaList();
+  
   Future<EmpresaModel> getEmpresa(EmpresaModel empresaModel);
   Future<String> patchEmpresa(EmpresaModel empresaModel);
   Future<String> putEmpresa(EmpresaModel empresaModel);

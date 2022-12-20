@@ -28,22 +28,7 @@ class PracticasDBPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: PracticaDBService.getPracticas("2"),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                var practica = snapshot.data![index];
-                return CajaPractica(practica);
-              },
-            );
-          } else {
-            return SpinnerWidget();
-          }
-        },
-      ),
+      body: Text('dam'),
     );
   }
 }

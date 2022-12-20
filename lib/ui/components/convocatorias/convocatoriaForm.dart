@@ -1,28 +1,35 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proyecto_integrador_c6/model/convocatoriaModel.dart';
 import 'package:proyecto_integrador_c6/model/empresaModel.dart';
+import 'package:proyecto_integrador_c6/services/convocatoria/ConvocatoriaService.dart';
+import 'package:proyecto_integrador_c6/services/convocatoria/convocatoriaController.dart';
 import 'package:proyecto_integrador_c6/services/empresa/empresaController.dart';
 import 'package:proyecto_integrador_c6/services/empresa/empresaService.dart';
 import 'package:proyecto_integrador_c6/ui/components/widgets/alertModalMx.dart';
+import 'package:proyecto_integrador_c6/ui/components/widgets/autocompleteEmpresaMx.dart';
 import 'package:proyecto_integrador_c6/ui/components/widgets/textInputMx.dart';
 
-class EmpresaForm extends StatefulWidget {
-  const EmpresaForm({super.key});
+class ConvocatoriaForm extends StatefulWidget {
+  const ConvocatoriaForm({super.key});
 
   @override
-  State<StatefulWidget> createState() => _EmpresaForm();
+  State<StatefulWidget> createState() => _ConvocatoriaForm();
 }
 
-class _EmpresaForm extends State<EmpresaForm> {
+class _ConvocatoriaForm extends State<ConvocatoriaForm> {
   final _formKey = GlobalKey<FormState>();
+  var convocatoriaController = ConvocatoriaController(ConvocatoriaServiceMx());
   var empresaController = EmpresaController(EmpresaServiceMx());
 
-  TextEditingController _controllerNombre = TextEditingController();
-  TextEditingController _controllerRuc = TextEditingController();
-  TextEditingController _controllerActividad = TextEditingController();
-  TextEditingController _controllerSector = TextEditingController();
-  TextEditingController _controllerDireccion = TextEditingController();
-  TextEditingController _controllerConvenio = TextEditingController();
+  TextEditingController _controllerEmpresa = TextEditingController();
+  TextEditingController _controllerDescripcion = TextEditingController();
+  TextEditingController _controllerCupos = TextEditingController();
+  TextEditingController _controllerCargo = TextEditingController();
+  TextEditingController _controllerTiempo = TextEditingController();
+  TextEditingController _controllerLugar = TextEditingController();
+  TextEditingController _controllerFechaLimite = TextEditingController();
+  TextEditingController _controllerTelefono = TextEditingController();
 
 
   @override
@@ -34,13 +41,13 @@ class _EmpresaForm extends State<EmpresaForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Registrar Empresa"),
+        title: Text("Registrar Convocatoria"),
       ),
       body: Container(
         alignment: Alignment.topCenter,
         width: double.infinity,
         height: double.infinity,
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(5),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -49,6 +56,9 @@ class _EmpresaForm extends State<EmpresaForm> {
                 key: _formKey,
                 child: Column(children: 
                 [
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,7 +67,7 @@ class _EmpresaForm extends State<EmpresaForm> {
                         child: Icon(Icons.maps_home_work),
                         margin: EdgeInsets.all(20.0),
                       ),
-                      textInputMx(_controllerNombre, 'Nombre')
+                      textInputMx(_controllerEmpresa, 'Empresa')
                     ],
                   ),
                   Row(
@@ -68,7 +78,7 @@ class _EmpresaForm extends State<EmpresaForm> {
                         child: Icon(Icons.tag),
                         margin: EdgeInsets.all(20.0),
                       ),
-                      textInputMx(_controllerRuc, 'R.U.C.')
+                      textInputMx(_controllerDescripcion, 'Descripcion')
                     ],
                   ),
                   Row(
@@ -79,7 +89,7 @@ class _EmpresaForm extends State<EmpresaForm> {
                         child: Icon(Icons.work),
                         margin: EdgeInsets.all(20.0),
                       ),
-                      textInputMx(_controllerActividad, 'Actividad')
+                      textInputMx(_controllerCupos, 'Cupos')
                     ],
                   ),
                   Row(
@@ -90,7 +100,7 @@ class _EmpresaForm extends State<EmpresaForm> {
                         child: Icon(Icons.join_full),
                         margin: EdgeInsets.all(20.0),
                       ),
-                      textInputMx(_controllerSector, 'Sector')
+                      textInputMx(_controllerCargo, 'Cargo')
                     ],
                   ),
                   Row(
@@ -101,7 +111,7 @@ class _EmpresaForm extends State<EmpresaForm> {
                         child: Icon(Icons.place),
                         margin: EdgeInsets.all(20.0),
                       ),
-                      textInputMx(_controllerDireccion, 'Direccion')
+                      textInputMx(_controllerTiempo, 'Tiempo')
                     ],
                   ),
                   Row(
@@ -112,9 +122,32 @@ class _EmpresaForm extends State<EmpresaForm> {
                         child: Icon(Icons.assured_workload),
                         margin: EdgeInsets.all(20.0),
                       ),
-                      textInputMx(_controllerConvenio, 'Convenio')
+                      textInputMx(_controllerLugar, 'Lugar')
                     ],
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        child: Icon(Icons.assured_workload),
+                        margin: EdgeInsets.all(20.0),
+                      ),
+                      textInputMx(_controllerFechaLimite, 'Fecha Limite')
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        child: Icon(Icons.assured_workload),
+                        margin: EdgeInsets.all(20.0),
+                      ),
+                      textInputMx(_controllerTelefono, 'Telefono')
+                    ],
+                  ),
+                  
                   SizedBox(
                     height: 20.0,
                   ),
@@ -135,25 +168,30 @@ class _EmpresaForm extends State<EmpresaForm> {
                           minimumSize: const Size(300, 60),
                         ),
                         onPressed: () async {
-                          if (_controllerNombre.text.isNotEmpty 
-                          && _controllerActividad.text.isNotEmpty 
-                          && _controllerConvenio.text.isNotEmpty
-                          && _controllerDireccion.text.isNotEmpty
-                          && _controllerRuc.text.isNotEmpty
-                          && _controllerSector.text.isNotEmpty
+                          if (
+                            // _controllerEmpresa.text.isNotEmpty 
+                          _controllerDescripcion.text.isNotEmpty 
+                          // && _controllerCupos.text.isNotEmpty
+                          && _controllerCargo.text.isNotEmpty
+                          && _controllerTiempo.text.isNotEmpty
+                          && _controllerLugar.text.isNotEmpty
+                          && _controllerFechaLimite.text.isNotEmpty
+                          && _controllerTelefono.text.isNotEmpty
                           ){
-                            EmpresaModel empresamx = EmpresaModel(
-                              nombre: _controllerNombre.text,
-                              actividad: _controllerActividad.text,
-                              convenio: _controllerConvenio.text,
-                              direccion: _controllerDireccion.text,
-                              ruc: _controllerRuc.text,
-                              sector: _controllerSector.text,
+                            ConvocatoriaModel convocatoriamx = ConvocatoriaModel(
+                              descripcion: _controllerDescripcion.text,
+                              cupos: int.parse(_controllerCupos.text),
+                              cargo: _controllerCargo.text,
+                              tiempo: _controllerTiempo.text,
+                              lugar: _controllerLugar.text,
+                              fechaLimite: _controllerFechaLimite.text,
+                              telefono: _controllerTelefono.text,
+                              fkEmpresaId: int.parse(_controllerEmpresa.text),
                             );
 
-                            print(empresamx.toJson());
+                            print(convocatoriamx.toJson());
 
-                            empresaController.createPostEmpresa(empresamx);
+                            convocatoriaController.createPostConvocatoria(convocatoriamx);
                             Navigator.pop(context, () {});
                           }
                           else{

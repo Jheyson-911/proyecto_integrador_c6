@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proyecto_integrador_c6/model/convocatoriaModel.dart';
 import 'package:proyecto_integrador_c6/services/convocatoria/convocatoriaController.dart';
+import 'package:proyecto_integrador_c6/ui/components/convocatorias/convocatoriaDetail.dart';
+import 'package:proyecto_integrador_c6/ui/components/convocatorias/convocatoriaEdit.dart';
 
 SafeArea ConvocatoriaList(AsyncSnapshot<List<ConvocatoriaModel>> snapshot, ConvocatoriaController convocatoriaController, {required Null Function() refreshMx}){
  return SafeArea(
@@ -50,15 +52,15 @@ Container buildEditEmpresa(BuildContext context ,ConvocatoriaController convocat
             icon: const Icon(Icons.edit),
             color: Color(0xFF0323D8),
             onPressed: () {
-              // Navigator.push(
-              //   context, 
-              //   MaterialPageRoute(builder: (_) => EmpresaEdit(empresa))
-              // ).then((updateEmpresa) {
-              //   if (updateEmpresa != null) {
-              //     editRefresh();
-              //     _showModalBottomSheet(context, "Empresa actualizada!");
-              //   }
-              // });
+              Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (_) => ConvocatoriaEdit(convocatoria))
+              ).then((updateConvocatoria) {
+                if (updateConvocatoria != null) {
+                  editRefresh();
+                  _showModalBottomSheet(context, "Convocatoria actualizada!");
+                }
+              });
             },
           ),
   );
@@ -67,7 +69,7 @@ Container buildEditEmpresa(BuildContext context ,ConvocatoriaController convocat
 IconButton showDetailEmpresa(BuildContext context,ConvocatoriaModel convocatoria){
   return IconButton(
     onPressed: () {
-      // EmpresaDetail(context, convocatoria);
+      ConvocatoriaDetail(context, convocatoria);
     },
     icon: Icon(Icons.format_list_bulleted)
   );

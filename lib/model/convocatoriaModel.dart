@@ -7,6 +7,8 @@ class ConvocatoriaModel {
   String? lugar;
   String? fechaLimite;
   String? telefono;
+  String? createdAt;
+  String? updatedAt;
   int? fkEmpresaId;
 
   ConvocatoriaModel(
@@ -18,6 +20,8 @@ class ConvocatoriaModel {
       this.lugar,
       this.fechaLimite,
       this.telefono,
+      this.createdAt,
+      this.updatedAt,
       this.fkEmpresaId});
 
   ConvocatoriaModel.fromJson(Map<String, dynamic> json) {
@@ -26,9 +30,11 @@ class ConvocatoriaModel {
     cupos = json['cupos'];
     cargo = json['cargo'];
     tiempo = json['tiempo'];
-    lugar = json['Lugar'];
+    lugar = json['lugar'];
     fechaLimite = json['fecha_limite'];
     telefono = json['telefono'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
     fkEmpresaId = json['fk_empresaId'];
   }
 
@@ -39,9 +45,11 @@ class ConvocatoriaModel {
     data['cupos'] = this.cupos;
     data['cargo'] = this.cargo;
     data['tiempo'] = this.tiempo;
-    data['Lugar'] = this.lugar;
+    data['lugar'] = this.lugar;
     data['fecha_limite'] = this.fechaLimite;
     data['telefono'] = this.telefono;
+    data['createdAt'] = this.createdAt;
+    data['updatedAt'] = this.updatedAt;
     data['fk_empresaId'] = this.fkEmpresaId;
     return data;
   }

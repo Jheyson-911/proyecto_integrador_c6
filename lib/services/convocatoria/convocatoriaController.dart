@@ -12,11 +12,11 @@ class ConvocatoriaController {
     return _convocatoriaService.getConvocatoriaList();
   }
 
-  Future<String> updatePutEmpresa(ConvocatoriaModel convocatoriaModel) async {
+  Future<String> updatePutConvocatoria(ConvocatoriaModel convocatoriaModel) async {
     return _convocatoriaService.putConvocatoria(convocatoriaModel);
   }
 
-  Future<String> createPostEmpresa(ConvocatoriaModel convocatoriaModel) async {
+  Future<String> createPostConvocatoria(ConvocatoriaModel convocatoriaModel) async {
     return _convocatoriaService.postConvocatoria(convocatoriaModel);
   }
 }
