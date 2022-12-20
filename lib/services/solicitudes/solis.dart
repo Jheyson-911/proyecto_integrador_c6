@@ -1,4 +1,4 @@
-import 'package:proyecto_integrador_c6/services/solicitudes/solicitud.dart';
+import 'package:proyecto_integrador_c6/services/solicitudes/soli.dart';
 
 class Solicitudes {
   Solicitudes();

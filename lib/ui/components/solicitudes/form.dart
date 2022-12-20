@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import "package:flutter/material.dart";
-import 'package:proyecto_integrador_c6/services/solicitudes/solicitud_service.dart';
-import 'package:proyecto_integrador_c6/ui/components/solicitudes/solicitudes_page.dart';
+import 'package:proyecto_integrador_c6/services/solicitudes/soli_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:quickalert/quickalert.dart';
 
 class FormSoli extends StatefulWidget {
-  const FormSoli({super.key});
+  final Function accion;
+  const FormSoli(this.accion, {super.key});
   @override
   State<FormSoli> createState() => _SolicitudesPageState();
 }
@@ -273,7 +273,7 @@ class _SolicitudesPageState extends State<FormSoli> {
                             };
                             var respuesta =
                                 await SolicitudDBService.createSolicitud(
-                                    "2", data);
+                                    "1", data);
 
                             Navigator.pop(
                               context,
@@ -282,7 +282,7 @@ class _SolicitudesPageState extends State<FormSoli> {
                               var message =
                                   "Solicitud actualizada correctamente";
 
-                              _succesModal(message);
+                              _succesModal(message, widget.accion);
                             } else {
                               var message =
                                   "Ocurrio un error al actualizar la solicitud";
@@ -306,7 +306,8 @@ class _SolicitudesPageState extends State<FormSoli> {
     );
   }
 
-  _succesModal(String message) {
+  _succesModal(String message, Function accion) {
+    accion();
     return QuickAlert.show(
       title: message,
       context: context,

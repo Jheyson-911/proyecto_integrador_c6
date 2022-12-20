@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import "package:flutter/material.dart";
-import 'package:proyecto_integrador_c6/services/solicitudes/solicitud.dart';
-import 'package:proyecto_integrador_c6/services/solicitudes/solicitud_service.dart';
+import 'package:proyecto_integrador_c6/services/solicitudes/soli.dart';
+import 'package:proyecto_integrador_c6/services/solicitudes/soli_service.dart';
 import 'package:quickalert/quickalert.dart';
 
 class EditFormSoli extends StatefulWidget {

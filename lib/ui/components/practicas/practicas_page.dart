@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:proyecto_integrador_c6/services/practicas/practica_service.dart';
+import 'package:proyecto_integrador_c6/services/practicas/pracitca_service.dart';
 import 'package:proyecto_integrador_c6/ui/components/practicas/caja_practica.dart';
 import 'package:proyecto_integrador_c6/ui/components/solicitudes/spinner.dart';
 

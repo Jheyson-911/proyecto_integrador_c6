@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
-import 'package:proyecto_integrador_c6/services/solicitudes/solicitud_service.dart';
-import 'package:proyecto_integrador_c6/ui/components/solicitudes/caja_pelicula.dart';
+import 'package:proyecto_integrador_c6/services/solicitudes/soli_service.dart';
+import 'package:proyecto_integrador_c6/ui/components/solicitudes/caja_solicitud.dart';
 import 'package:proyecto_integrador_c6/ui/components/solicitudes/form.dart';
 import 'package:proyecto_integrador_c6/ui/components/solicitudes/spinner.dart';
 
@@ -12,18 +12,6 @@ class SolicitudesPage extends StatefulWidget {
 }
 
 class _SolicitudesPageState extends State<SolicitudesPage> {
-  @override
-  Widget build(BuildContext context) {
-    return SolicitudesDBPage();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-}
-
-class SolicitudesDBPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,11 +35,22 @@ class SolicitudesDBPage extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => FormSoli()),
+            MaterialPageRoute(
+                builder: (context) => FormSoli(accion as Function)),
           );
         },
         child: const Icon(Icons.add),
       ),
     );
+    ;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void accion() {
+    setState(() {});
   }
 }
