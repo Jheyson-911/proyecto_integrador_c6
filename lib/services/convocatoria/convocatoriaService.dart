@@ -12,17 +12,15 @@ abstract class ConvocatoriaService {
   Future<String> putConvocatoria(ConvocatoriaModel convocatoriaModel);
   Future<String> deleteConvocatoria(ConvocatoriaModel convocatoriaModel);
   Future<String> postConvocatoria(ConvocatoriaModel convocatoriaModel);
-
 }
 
 class ConvocatoriaServiceMx implements ConvocatoriaService {
   final String API_URL = dotenv.get('API_HOST');
 
-
   @override
   Future<List<ConvocatoriaModel>> getConvocatoriaList() async {
     List<ConvocatoriaModel> convocatoriaList = [];
-    var url = Uri.parse('$API_URL/apiv1/convocatorias/all');
+    var url = Uri.parse('$API_URL/apiv1/convocatoria/all');
     var response = await http.get(url);
     var body = jsonDecode(response.body)['data'];
 
@@ -48,43 +46,42 @@ class ConvocatoriaServiceMx implements ConvocatoriaService {
     };
     // print(jsonEncode(data));
 
-    await http.put(
-      url, 
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(data)
-      // headers: {'Authorization': 'your token'},
-    ).then((response){
+    await http
+        .put(url,
+            headers: {
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode(data)
+            // headers: {'Authorization': 'your token'},
+            )
+        .then((response) {
       Map<String, dynamic> result = json.decode(response.body);
       return resData = result['message'];
     });
     return resData;
   }
-  
+
   @override
   Future<String> deleteConvocatoria(ConvocatoriaModel convocatoriaModel) async {
     // TODO: implement deleteEmpresa
     throw UnimplementedError();
   }
-  
+
   @override
   Future<String> patchConvocatoria(ConvocatoriaModel convocatoriaModel) {
     // TODO: implement patchEmpresa
     throw UnimplementedError();
   }
-  
+
   @override
   Future<String> postConvocatoria(ConvocatoriaModel convocatoriaModel) async {
     var url = Uri.parse('$API_URL/apiv1/convocatoria/create');
     var result = '';
-    var response = await http.post(
-      url,
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(convocatoriaModel.toJson())
-    );
+    var response = await http.post(url,
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(convocatoriaModel.toJson()));
     return 'true';
   }
 }

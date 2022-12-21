@@ -19,7 +19,11 @@ class _EmpresasPageState extends State<EmpresasPage> {
   @override
   void initState() {
     super.initState();
-    empresaController.fetchEmpresaList(); 
+    empresaController.fetchEmpresaList();
+  }
+
+  void accion() {
+    setState(() {});
   }
 
   @override
@@ -28,7 +32,7 @@ class _EmpresasPageState extends State<EmpresasPage> {
       body: FutureBuilder<List<EmpresaModel>>(
         future: empresaController.fetchEmpresaList(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting){
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
@@ -36,22 +40,20 @@ class _EmpresasPageState extends State<EmpresasPage> {
               child: Text('Data error'),
             );
           }
-          return EmpresaList(
-            snapshot, 
-            empresaController,
-            refreshMx: (){
-              setState(() {
-                empresaController.fetchEmpresaList();
-              });
-            }
-          );
+          return EmpresaList(snapshot, empresaController, refreshMx: () {
+            setState(() {
+              empresaController.fetchEmpresaList();
+            });
+          });
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-            context, MaterialPageRoute(builder: (_) => EmpresaForm())
-          ).then((newContact) {
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => EmpresaForm(accion as Function)))
+              .then((newContact) {
             if (newContact != null) {
               setState(() {
                 empresaController.fetchEmpresaList();
@@ -67,29 +69,27 @@ class _EmpresasPageState extends State<EmpresasPage> {
   }
 }
 
-void _showModalBottomSheet(BuildContext context, String message){
+void _showModalBottomSheet(BuildContext context, String message) {
   showModalBottomSheet(
-    context: context,
-    builder: (builder) {
-      return Container(
-        height: 50,
-        color: Colors.green,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                message,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold),
-              )
-            ],
-          ),
-        )
-      );
-    }
-  );
+      context: context,
+      builder: (builder) {
+        return Container(
+            height: 50,
+            color: Colors.green,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    message,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+            ));
+      });
 }

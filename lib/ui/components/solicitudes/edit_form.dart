@@ -8,7 +8,8 @@ import 'package:quickalert/quickalert.dart';
 
 class EditFormSoli extends StatefulWidget {
   final Solicitud soli;
-  const EditFormSoli(this.soli, {super.key});
+  final Function accion;
+  const EditFormSoli(this.soli, this.accion, {super.key});
   @override
   State<EditFormSoli> createState() => _EditFormSoli();
 }
@@ -282,7 +283,7 @@ class _EditFormSoli extends State<EditFormSoli> {
                               var message =
                                   "Solicitud actualizada correctamente";
 
-                              _succesModal(message);
+                              _succesModal(message, widget.accion);
                             } else {
                               var message =
                                   "Ocurrio un error al actualizar la solicitud";
@@ -306,7 +307,8 @@ class _EditFormSoli extends State<EditFormSoli> {
     );
   }
 
-  _succesModal(String message) {
+  _succesModal(String message, Function accion) {
+    accion();
     return QuickAlert.show(
       title: message,
       context: context,

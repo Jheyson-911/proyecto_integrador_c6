@@ -1,4 +1,3 @@
-
 import "package:flutter/material.dart";
 import 'package:proyecto_integrador_c6/services/practicas/practica.dart';
 
@@ -48,7 +47,7 @@ class CajaPractica extends StatelessWidget {
                 ],
               )),
           SizedBox(
-              width: 300,
+              width: 200,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,

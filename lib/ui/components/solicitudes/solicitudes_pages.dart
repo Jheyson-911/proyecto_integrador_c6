@@ -23,7 +23,7 @@ class _SolicitudesPageState extends State<SolicitudesPage> {
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 var solicitud = snapshot.data![index];
-                return CajaSolicitud(solicitud);
+                return CajaSolicitud(solicitud, accion);
               },
             );
           } else {

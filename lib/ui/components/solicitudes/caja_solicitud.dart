@@ -6,7 +6,8 @@ import 'package:quickalert/quickalert.dart';
 
 class CajaSolicitud extends StatelessWidget {
   final Solicitud soli;
-  const CajaSolicitud(this.soli, {super.key});
+  final Function accion;
+  const CajaSolicitud(this.soli, this.accion, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,7 @@ class CajaSolicitud extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => EditFormSoli(soli)));
+                        builder: (context) => EditFormSoli(soli, accion)));
               },
               icon: const Icon(Icons.edit)),
           const SizedBox(
@@ -96,7 +97,7 @@ class CajaSolicitud extends StatelessWidget {
           if (response == 1) {
             var mensaje = 'Elimiando correctamente';
             Navigator.pop(context);
-            return _succesModal(context, mensaje);
+            return _succesModal(context, mensaje, accion);
           } else {
             var mensaje = "Ocurrio un error al eliminar la solicitud";
             Navigator.pop(context);
@@ -111,7 +112,8 @@ class CajaSolicitud extends StatelessWidget {
         ));
   }
 
-  _succesModal(BuildContext context, String message) {
+  _succesModal(BuildContext context, String message, Function accion) {
+    accion();
     return QuickAlert.show(
         title: message,
         context: context,

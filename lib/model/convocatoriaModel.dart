@@ -1,7 +1,7 @@
 class ConvocatoriaModel {
   int? id;
   String? descripcion;
-  int? cupos;
+  String? cupos;
   String? cargo;
   String? tiempo;
   String? lugar;
