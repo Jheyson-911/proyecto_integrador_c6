@@ -42,13 +42,45 @@ class _InformacionPageState extends State<InformacionPage> {
                 Container(
                     margin: const EdgeInsets.only(bottom: 0),
                     child: Image.network(
-                      'https://lh3.googleusercontent.com/-hWH-rEdRNFE/WB9i2aaHFuI/AAAAAAAAI-M/w3yNtA7Bjvs/s640/blogger-image--575121095.jpg',
+                      'https://i.ytimg.com/vi/oz2V3zuXOX0/maxresdefault.jpg',
                       height: 300,
                       width: 800,
                       fit: BoxFit.contain,
                     )),
                 Column(
                   children: [
+
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        'ACERCA DE LA CARRERA',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 25),
+                      ),
+                    ),
+
+
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        'La carrera de Ingeniería de Sistemas prepara profesionales con conocimientos científicos y habilidades que les permitan identificar problemas, planificar, proyectar, mantener, supervisar, administrar proyectos y formular soluciones integrales de sistemas organizacionales e informáticos. Utilizamos herramientas como el modelamiento, diseño y rediseño de sistemas aplicados a los procesos de producción y de servicio,  en concordancia con los principios de la filosofía cristiana',
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 15),
+                      ),
+                    ),
+
+                    Container(
+                    margin: const EdgeInsets.only(bottom: 0),
+                    child: Image.network(
+                      'https://upeu.edu.pe/wp-content/uploads/2022/08/WhatsApp-Image-2022-07-27-at-10.09.34-AM-1080x675.jpeg',
+                      height: 300,
+                      width: 800,
+                      fit: BoxFit.contain,
+                    )),
+
+
                     Container(
                       padding: EdgeInsets.all(10),
                       child: Text(
