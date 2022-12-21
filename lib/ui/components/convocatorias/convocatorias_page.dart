@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:proyecto_integrador_c6/model/convocatoriaModel.dart';
 import 'package:proyecto_integrador_c6/services/convocatoria/ConvocatoriaService.dart';
 import 'package:proyecto_integrador_c6/services/convocatoria/convocatoriaController.dart';
+import 'package:proyecto_integrador_c6/ui/components/convocatorias/convocatoriaForm.dart';
 import 'package:proyecto_integrador_c6/ui/components/convocatorias/convocatoriaList.dart';
 
 class ConvocatoriasPage extends StatefulWidget {
@@ -48,16 +49,16 @@ class _ConvocatoriasPageState extends State<ConvocatoriasPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Navigator.push(
-          //   context, MaterialPageRoute(builder: (_) => EmpresaForm())
-          // ).then((newContact) {
-          //   if (newContact != null) {
-          //     setState(() {
-          //       // empresaController.fetchEmpresaList();
-          //       // _showModalBottomSheet(context, "Empresa registrada!");
-          //     });
-          //   }
-          // });
+          Navigator.push(
+            context, MaterialPageRoute(builder: (_) => ConvocatoriaForm())
+          ).then((newContact) {
+            if (newContact != null) {
+              setState(() {
+                // empresaController.fetchEmpresaList();
+                // _showModalBottomSheet(context, "Empresa registrada!");
+              });
+            }
+          });
         },
         child: Icon(Icons.add),
       ),

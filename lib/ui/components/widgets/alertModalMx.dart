@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-void alertModalMx(
-    BuildContext context, String message, Color colorAlert, Function accion) {
+void alertModalMx(BuildContext context, String message, Color colorAlert) {
   showModalBottomSheet(
       context: context,
       builder: (builder) {
