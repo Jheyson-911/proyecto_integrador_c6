@@ -7,7 +7,6 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:proyecto_integrador_c6/ui/drawerView/dashboard.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -50,38 +49,48 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: _controllerUsername,
-                      decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFf5f5f5),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50.0))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 2.0, color: Color(0xFF003361)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0))),
-                          label: Text("Username")),
-                    ),
+                        controller: _controllerUsername,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFf5f5f5),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50.0))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2.0, color: Color(0xFF003361)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            label: Text("Username")),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'El username es obligatorio';
+                          }
+                          return null;
+                        }),
                     const SizedBox(
                       height: 20.0,
                     ),
                     TextFormField(
-                      controller: _controllerPassword,
-                      decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFf5f5f5),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50.0))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 2.0, color: Color(0xFF003361)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0))),
-                          label: Text("Password")),
-                    ),
+                        controller: _controllerPassword,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFf5f5f5),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50.0))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2.0, color: Color(0xFF003361)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            label: Text("Password")),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'La contraseña es obligatoria';
+                          }
+                          return null;
+                        }),
                     const SizedBox(
                       height: 20.0,
                     ),
@@ -103,39 +112,41 @@ class _LoginPageState extends State<LoginPage> {
                           "password": _controllerPassword.text
                         };
 
-                        try {
-                          var url = Uri.parse(API_URL + "/apiv1/auth/login");
+                        if (_formKey.currentState!.validate()) {
+                          try {
+                            var url = Uri.parse(API_URL + "/apiv1/auth/login");
 
-                          response = await http.post(url,
-                              headers: {
-                                HttpHeaders.contentTypeHeader:
-                                    "application/json",
-                              },
-                              body: jsonEncode(data));
-                        } catch (e) {
-                          return showModalBottomSheet<void>(
-                              context: context,
-                              builder: (context) {
-                                return Container(
-                                    height: 50,
-                                    color: Colors.red,
-                                    child: Center(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: const [
-                                          Text(
-                                            "No hay conexión",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
-                                          )
-                                        ],
-                                      ),
-                                    ));
-                              });
+                            response = await http.post(url,
+                                headers: {
+                                  HttpHeaders.contentTypeHeader:
+                                      "application/json",
+                                },
+                                body: jsonEncode(data));
+                          } catch (e) {
+                            return showModalBottomSheet<void>(
+                                context: context,
+                                builder: (context) {
+                                  return Container(
+                                      height: 50,
+                                      color: Colors.red,
+                                      child: Center(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: const [
+                                            Text(
+                                              "No hay conexión",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ),
+                                      ));
+                                });
+                          }
                         }
 
                         var respuesta = jsonDecode(response.body);

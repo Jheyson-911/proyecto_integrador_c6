@@ -69,92 +69,117 @@ class _SolicitudesPageState extends State<FormSoli> {
                       height: 20.0,
                     ),
                     TextFormField(
-                      controller: _controllerName,
-                      decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFf5f5f5),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 2.0, color: Color(0xFF003361)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          label: Text("Nombre")),
-                    ),
+                        controller: _controllerName,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFf5f5f5),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2.0, color: Color(0xFF003361)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            label: Text("Nombre")),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'El campo Nombre es obligatorio';
+                          }
+                          return null;
+                        }),
                     const SizedBox(
                       height: 20.0,
                     ),
                     TextFormField(
-                      controller: _controllerRuc,
-                      decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFf5f5f5),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 2.0, color: Color(0xFF003361)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          label: Text("Ruc")),
-                    ),
+                        controller: _controllerRuc,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFf5f5f5),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2.0, color: Color(0xFF003361)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            label: Text("Ruc")),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'El campo Ruc es obligatorio';
+                          }
+                          return null;
+                        }),
                     const SizedBox(
                       height: 20.0,
                     ),
                     TextFormField(
-                      controller: _controllerActividad,
-                      decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFf5f5f5),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 2.0, color: Color(0xFF003361)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          label: Text("Actividad")),
-                    ),
+                        controller: _controllerActividad,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFf5f5f5),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2.0, color: Color(0xFF003361)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            label: Text("Actividad")),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'El campo Actividad es obligatorio';
+                          }
+                          return null;
+                        }),
                     const SizedBox(
                       height: 20.0,
                     ),
                     TextFormField(
-                      controller: _controllerSector,
-                      decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFf5f5f5),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 2.0, color: Color(0xFF003361)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          label: Text("Sector")),
-                    ),
+                        controller: _controllerSector,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFf5f5f5),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2.0, color: Color(0xFF003361)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            label: Text("Sector")),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'El campo Sector es obligatorio';
+                          }
+                          return null;
+                        }),
                     const SizedBox(
                       height: 20.0,
                     ),
                     TextFormField(
-                      controller: _controllerDireccion,
-                      decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFf5f5f5),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 2.0, color: Color(0xFF003361)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          label: Text("Direccion")),
-                    ),
+                        controller: _controllerDireccion,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFf5f5f5),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2.0, color: Color(0xFF003361)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            label: Text("Direccion")),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'El campo Direccion es obligatorio';
+                          }
+                          return null;
+                        }),
                     const SizedBox(
                       height: 20.0,
                     ),
@@ -169,75 +194,94 @@ class _SolicitudesPageState extends State<FormSoli> {
                       height: 20.0,
                     ),
                     TextFormField(
-                      controller: _controllerNombre,
-                      decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFf5f5f5),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 2.0, color: Color(0xFF003361)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          label: Text("Nombre")),
-                    ),
+                        controller: _controllerNombre,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFf5f5f5),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2.0, color: Color(0xFF003361)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            label: Text("Nombre")),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'El campo Nombre es obligatorio';
+                          }
+                          return null;
+                        }),
                     const SizedBox(
                       height: 20.0,
                     ),
                     TextFormField(
-                      controller: _controllerCargo,
-                      decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFf5f5f5),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 2.0, color: Color(0xFF003361)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          label: Text("Cargo")),
-                    ),
+                        controller: _controllerCargo,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFf5f5f5),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2.0, color: Color(0xFF003361)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            label: Text("Cargo")),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'El campo Cargo es obligatorio';
+                          }
+                          return null;
+                        }),
                     const SizedBox(
                       height: 20.0,
                     ),
                     TextFormField(
-                      controller: _controllerAreaEncargada,
-                      decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFf5f5f5),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 2.0, color: Color(0xFF003361)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          label: Text("Area encargada")),
-                    ),
+                        controller: _controllerAreaEncargada,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFf5f5f5),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2.0, color: Color(0xFF003361)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            label: Text("Area encargada")),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'El campo Area encargada es obligatorio';
+                          }
+                          return null;
+                        }),
                     const SizedBox(
                       height: 20.0,
                     ),
                     TextFormField(
-                      controller: _controllerDescripcion,
-                      decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xFFf5f5f5),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 2.0, color: Color(0xFF003361)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          label:
-                              Text("Descripción de la solicitud (opcional)")),
-                    ),
+                        controller: _controllerDescripcion,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFf5f5f5),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2.0, color: Color(0xFF003361)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            label: Text("Descripción de la solicitud")),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value == '') {
+                            return 'El campo Descripcion es obligatorio';
+                          }
+                          return null;
+                        }),
                     const SizedBox(
                       height: 20.0,
                     ),
@@ -271,22 +315,24 @@ class _SolicitudesPageState extends State<FormSoli> {
                               "area": _controllerAreaEncargada.text,
                               "descripcion": _controllerDescripcion.text
                             };
-                            var respuesta =
-                                await SolicitudDBService.createSolicitud(
-                                    "1", data);
+                            if (_formKey.currentState!.validate()) {
+                              var respuesta =
+                                  await SolicitudDBService.createSolicitud(
+                                      "1", data);
 
-                            Navigator.pop(
-                              context,
-                            );
-                            if (respuesta == 1) {
-                              var message =
-                                  "Solicitud actualizada correctamente";
+                              Navigator.pop(
+                                context,
+                              );
+                              if (respuesta == 1) {
+                                var message =
+                                    "Solicitud actualizada correctamente";
 
-                              _succesModal(message, widget.accion);
-                            } else {
-                              var message =
-                                  "Ocurrio un error al actualizar la solicitud";
-                              _errorModal(context, message);
+                                _succesModal(message, widget.accion);
+                              } else {
+                                var message =
+                                    "Ocurrio un error al actualizar la solicitud";
+                                _errorModal(context, message);
+                              }
                             }
                           },
                           child: const Icon(Icons.save),
