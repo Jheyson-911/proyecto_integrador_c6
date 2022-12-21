@@ -85,6 +85,9 @@ class _LoginPageState extends State<LoginPage> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0))),
                             label: Text("Password")),
+                        obscureText: true,
+                        enableSuggestions: false,
+                        autocorrect: false,
                         validator: (value) {
                           if (value == null || value.isEmpty || value == '') {
                             return 'La contraseña es obligatoria';
