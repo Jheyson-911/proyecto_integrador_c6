@@ -24,11 +24,11 @@ class _ConvocatoriasPageState extends State<ConvocatoriasPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Scaffold(
+        child: Scaffold(
       body: FutureBuilder<List<ConvocatoriaModel>>(
         future: convocatoriaController.fetchConvocatoriaList(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting){
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
@@ -36,33 +36,29 @@ class _ConvocatoriasPageState extends State<ConvocatoriasPage> {
               child: Text('Data error'),
             );
           }
-          return ConvocatoriaList(
-            snapshot, 
-            convocatoriaController,
-            refreshMx: (){
-              setState(() {
-                convocatoriaController.fetchConvocatoriaList();
-              });
-            }
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context, MaterialPageRoute(builder: (_) => ConvocatoriaForm())
-          ).then((newContact) {
-            if (newContact != null) {
-              setState(() {
-                // empresaController.fetchEmpresaList();
-                // _showModalBottomSheet(context, "Empresa registrada!");
-              });
-            }
+          return ConvocatoriaList(snapshot, convocatoriaController,
+              refreshMx: () {
+            setState(() {
+              convocatoriaController.fetchConvocatoriaList();
+            });
           });
         },
-        child: Icon(Icons.add),
       ),
-    )
-    );
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.push(
+      //       context, MaterialPageRoute(builder: (_) => ConvocatoriaForm())
+      //     ).then((newContact) {
+      //       if (newContact != null) {
+      //         setState(() {
+      //           // empresaController.fetchEmpresaList();
+      //           // _showModalBottomSheet(context, "Empresa registrada!");
+      //         });
+      //       }
+      //     });
+      //   },
+      //   child: Icon(Icons.add),
+      // ),
+    ));
   }
 }
